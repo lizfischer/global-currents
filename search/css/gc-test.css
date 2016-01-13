@@ -1,0 +1,97 @@
+
+body {
+    font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #222;
+}
+
+#top-bar {
+    background-color: darkred;
+    height: 4em;
+}
+
+/* SIDE BAR
+-----------------------*/
+.side-bar{
+    width:20%;
+    overflow-y: auto;
+    height: 100%;
+}
+.nav{
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 3px solid #b8b8b8;
+    position: fixed;
+    height:90%;
+}
+.nav h2 {
+    font-size: 1.4rem;
+    display: inline;
+    letter-spacing: 1px;
+}
+.nav form {
+    font-size: 1.2rem;
+}
+
+.nav .option {
+    border-bottom: 2px solid #D1D1D1;
+    margin-top: 10px;
+}
+
+button, button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+    height: 2rem;
+    line-height: 1.8rem;
+    padding: 0 1rem;
+    width: 10em;
+}
+
+.century, .super {
+    width: auto;
+}
+
+
+/*PAGE
+---------------------*/
+.page-wrapper{
+    width: 80%;
+    position: absolute;
+    right:0px;
+}
+.page-wrapper img {
+    height: 80px;
+    /*border: 4px solid #555;*/
+    padding: 1px;
+    margin: 0 10px 10px 0;
+}
+
+
+
+/*
+.page-wrapper  img:hover {
+    border: 4px solid #00ccff;
+    cursor:pointer;
+}
+.preview img {
+    border: 4px solid #444;
+    padding: 1px;
+    width: 800px;
+}
+*/
+

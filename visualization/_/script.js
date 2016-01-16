@@ -1,5 +1,17 @@
-/**
- * Created by liz on 1/15/16.
- */
+var data = [];
+d3.json(json_result, function(d) {
+    for (key in d) {
+        console.log(key);
+        data.push(d[key].color);
+    }
 
-d3.selectAll('.item:nth-child(2)').text('select');
+    d3.select('#chart').selectAll('div')
+        .data(data)
+        .enter().append('div')
+        .classed('item', true)
+        .text(function (d) {
+            return d.color;
+        })
+
+});
+

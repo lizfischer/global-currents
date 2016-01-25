@@ -35,7 +35,6 @@
 </head>
 <body>
 
-<?php include "vars.php" ?>
 
 <!-- Primary Page Layout
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -44,9 +43,7 @@
         <ul class="nav">
             <form action="index.php" method="get">
                 <fieldset id="feature-search-wrapper">
-                    <?php
-                    echo getSearchModule(0, 0);
-                    ?>
+                    <script>document.write(getModule(0));</script>
                 </fieldset>
 
                 <input type="button" value="Add a feature" class="add" id="add" />
@@ -57,6 +54,7 @@
     <div class="page-wrapper">
             <div class="row">
                 <div class="ten columns content">
+                    <?php include "search.php" ?>
                 </div>
             </div>
     </div>

@@ -11,19 +11,19 @@ $ms_numbers = array('2I','2II','2III','3','4','9','10','11','12','16I','16II','1
     '383','385','390','393','397','400','402','404','405','406','415','416','419','421','422','424',
     '425','433','437','438','439','441','442','449','451','452','455','457','459','461','462','463',
     '466','468','469','470','473','475','478','480','481','483','484','485','486','505','511','628');
-
 $centuries = array('9','10','11','12','13','14','15','16');
 $super_scripts = array('','in','1','2','med','ex');
 $colors = array ('red', 'blue', 'black', 'green', 'yellow', 'gold', 'purple', 'multi');
+$regions = array ();
 
 function getSearchModule($removeable, $index){
-    global $ms_numbers, $centuries, $super_scripts, $colors;
+    global $ms_numbers, $centuries, $super_scripts, $colors, $regions;
     $search_module = "<div class='option'>
                         <div class='row'>
                             <div class='six columns'>
                                 <!-- MANUSCRIPT -->
-                                <label for='ms-$index'>Manuscript</label>
-                                <select name='manuscript' id='ms-$index'>
+                                <label for='ms-".$index."'>Manuscript</label>
+                                <select name='manuscript' id='ms-".$index."'>
                                     <option value=''></option>";
                                     foreach ($ms_numbers as $n){
                                         $search_module .= "<option value='".$n."'>".$n."</option>";
@@ -32,14 +32,14 @@ function getSearchModule($removeable, $index){
                             </div>
                             <div class='six columns'>
                                 <!-- DATE -->
-                                <label for='century-$index'>Date Range</label>
-                                <select name='century' class='century' id='century-$index'>
+                                <label for='century-".$index."'>Date Range</label>
+                                <select name='century' class='century' id='century-".$index."'>
                                     <option value=''></option>";
                                     foreach ($centuries as $n){
                                         $search_module .= "<option value='".$n."'>".$n."</option>";
                                     }
              $search_module .= "</select>
-                                <select name='super' class='super' id='super-$index'>
+                                <select name='super' class='super' id='super-".$index."'>
                                     <option value=''></option>";
                                     foreach ($super_scripts as $super){
                                         $search_module .= "<option value='".$super."'>".$super."</option>";
@@ -52,13 +52,13 @@ function getSearchModule($removeable, $index){
                         <div class='row'>
                             <div class='six columns'>
                                 <!-- LOCATION -->
-                                <label for='location-$index'>Location</label>
-                                <input type='text' name='folio-num' id='location-$index' placeholder='Christ Church'>
+                                <label for='location-".$index."'>Location</label>
+                                <input type='text' name='folio-num' id='location-".$index."' placeholder='Christ Church'>
                             </div>
                             <div class='six columns'>
                                 <!-- REGION -->
-                                <label for='region-$index'>Region</label>
-                                <select name='region' id='region-$index'>
+                                <label for='region-".$index."'>Region</label>
+                                <select name='region' id='region-".$index."'>
                                     <option value=''></option>";
                                     foreach ($regions as $r){
                                         $search_module .= "<option value='".$r."'>".$r."</option>";
@@ -70,12 +70,12 @@ function getSearchModule($removeable, $index){
                         <div class='row'>
                             <div class='six columns'>
                                 <!-- FOLIO -->
-                                <label for='folio-$index'>Folio</label>
-                                <input type='text' name='folio-num' id='folio-$index' placeholder='15 R, 103 V'>
+                                <label for='folio-".$index."'>Folio</label>
+                                <input type='text' name='folio-num' id='folio-".$index."' placeholder='15 R, 103 V'>
                             </div>
                             <div class='six columns'>
                                 <!-- FEATURE -->
-                                <label for='feature-$index'>Feature</label>
+                                <label for='feature-".$index."'>Feature</label>
                                 <select name='feature-select'>
                                     <option value = 'ln'>Litterae Notabiliores</option>
                                     <option value = 'ec'>Enlarged Capitals</option>
@@ -87,7 +87,7 @@ function getSearchModule($removeable, $index){
                         <div class='row'>
                             <div class='six columns'>
                                 <!-- PRIMARY COLOR -->
-                                <label for='p-color-$index'>Primary Color</label>
+                                <label for='p-color-".$index."'>Primary Color</label>
                                 <select name='primary-color'>";
                                     foreach ($colors as $c){
                                         $search_module .= "";
@@ -96,7 +96,7 @@ function getSearchModule($removeable, $index){
                             </div>
                             <div class='six columns'>
                                 <!-- SECONDARY COLOR -->
-                                <label for='s-color-$index'>Secondary Color</label>
+                                <label for='s-color-".$index."'>Secondary Color</label>
                                 <select name='secondary-color'>";
                                     foreach ($colors as $c){
                                         $search_module .= "";

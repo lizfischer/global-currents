@@ -24,7 +24,7 @@ function getModule(index){
                             "<div class='six columns'>" +
                                 "<!-- MANUSCRIPT -->" +
                                 "<label for='ms-"+index+"'>Manuscript</label>" +
-                                "<select name='manuscript' id='ms-$index'>" +
+                                "<select name='manuscript' id='ms-"+index+"'>" +
                                     "<option value=''></option>";
                                     for (var n in ms_number){
                                         search_module += "<option value='"+n+"'>"+n+"</option>";
@@ -33,14 +33,14 @@ function getModule(index){
                             "</div>" +
                             "<div class='six columns'>" +
                             "<!-- DATE -->" +
-                                "<label for='century-$index'>Date Range</label>" +
-                                "<select name='century' class='century' id='century-$index'>" +
+                                "<label for='century-"+index+"'>Date Range</label>" +
+                                "<select name='century' class='century' id='century-"+index+"'>" +
                                     "<option value=''></option>";
                                     for (var cent in centuries){
                                         search_module += "<option value='"+cent+"'>"+cent+"</option>";
                                     }
               search_module += "</select>" +
-                                "<select name='super' class='super' id='super-$index'>" +
+                                "<select name='super' class='super' id='super-"+index+"'>" +
                                     "<option value=''></option>";
                                     for (var s in super_scripts){
                                         search_module += "<option value='"+s+"'>"+s+"</option>";
@@ -51,13 +51,13 @@ function getModule(index){
                     "<div class='row'>" +
                         "<div class='six columns'>" +
                             "<!-- LOCATION -->  " +
-                            "<label for='location-$index'>Location</label>" +
-                            "<input type='text' name='folio-num' id='location-$index' placeholder='Christ Church'>" +
+                            "<label for='location-"+index+"'>Location</label>" +
+                            "<input type='text' name='folio-num' id='location-"+index+"' placeholder='Christ Church'>" +
                         "</div>" +
                         "<div class='six columns'>" +
                             "<!-- REGION -->" +
-                            "<label for='region-$index'>Region</label>" +
-                            "<select name='region' id='region-$index'>" +
+                            "<label for='region-"+index+"'>Region</label>" +
+                            "<select name='region' id='region-"+index+"'>" +
                                 "<option value=''></option>";
                                 for (var r in regions){
                                     search_module += "<option value='"+r+"'>"+r+"</option>";
@@ -68,12 +68,12 @@ function getModule(index){
                     "<div class='row'>" +
                         "<div class='six columns'>" +
                             "<!-- FOLIO -->" +
-                            "<label for='folio-$index'>Folio</label>" +
-                            "<input type='text' name='folio-num' id='folio-$index' placeholder='15 R, 103 V'>" +
+                            "<label for='folio-"+index+"'>Folio</label>" +
+                            "<input type='text' name='folio-num' id='folio-"+index+"' placeholder='15 R, 103 V'>" +
                     "</div>" +
                     "<div class='six columns'>" +
                         "<!-- FEATURE -->" +
-                        "<label for='feature-$index'>Feature</label>" +
+                        "<label for='feature-"+index+"'>Feature</label>" +
                         "<select name='feature-select'>" +
                             "<option value = 'ln'>Litterae Notabiliores</option>" +
                             "<option value = 'ec'>Enlarged Capitals</option>" +
@@ -84,8 +84,8 @@ function getModule(index){
                 "<div class='row'>" +
                     "<div class='six columns'>" +
                         "<!-- PRIMARY COLOR -->" +
-                        "<label for='p-color-$index'>Primary Color</label>" +
-                        "<select name='primary-color'>";
+                        "<label for='p-color-"+index+"'>Primary Color</label>" +
+                        "<select name='primary-color' id='primary-color-"+index+"'>";
                             for (var pcolor in colors){
                                 search_module += "";
                             }
@@ -93,8 +93,8 @@ function getModule(index){
                 "</div>" +
                 "<div class='six columns'>" +
                     "<!-- SECONDARY COLOR -->" +
-                    "<label for='s-color-$index'>Secondary Color</label>" +
-                        "<select name='secondary-color'>";
+                    "<label for='s-color-"+index+"'>Secondary Color</label>" +
+                        "<select name='secondary-color' id='s-color-"+index+">";
                             for (var scolor in colors){
                                 search_module += "";
                             }
@@ -117,7 +117,7 @@ $(document).ready(function() {
         var wrapper = $("<div class='option'></div>");
 
         var r1 = $("<div class='row'></div>");
-        var removeButton = $("<input class='remove' value='remove' type='button'>");
+        var removeButton = $("<input class='remove' value='x' type='button'>");
         removeButton.click(function() {
             $(this).closest("div .option").remove();
         });

@@ -2,7 +2,7 @@
 
 // Include StanfordDatabase
 //include_once("stanford.database.php");
-include_once("../mysqlConfig.php");
+include_once("mysqlConfig.php");
 /*
   // Initialize StanfordDatabase
   $db = new StanfordDatabase();
@@ -31,6 +31,7 @@ if ($db->is_connected()) {
     //Check if form is submitted
     if(isset($_GET['submit'])) {
 
+        //Get all form info
         $ms = $_GET["manuscript"];
         $folio = $_GET["folio-num"];
         if($_GET["folio-num"] != "")

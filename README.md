@@ -1,3 +1,4 @@
 # global-currents
-Stanford Global Currents project
+Stanford Global Currents project.
+
 See live version [here](https://stanford.edu/~efisch17/cgi-bin/globalcurrents/).

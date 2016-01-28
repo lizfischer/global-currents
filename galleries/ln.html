@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <title>Test Gallery - Litterae Notabiliores</title>
+        <title>Final Dataset Gallery - Litterae Notabiliores</title>
     	<link href="css/lightbox.css" rel="stylesheet">
         <link href="css/gallery.css" rel="stylesheet">
         
@@ -9,7 +9,7 @@
         
         <script> 
             $(function(){
-              $("#thumbnails").load("features/lns/lns.html"); 
+              $("#thumbnails").load("features/full/lns/lns.html"); 
             });
         </script> 
         <script type="text/javascript" src="js/jquery.infinitescroll.js"></script>
@@ -20,12 +20,13 @@
     <body>
         <div id="gallery" align="center">
             <nav>
-                <h3>Test Gallery - Litterae Notabiliores</h3>
+                <h3>Final Dataset Gallery - Litterae Notabiliores</h3>
                 <ul>
                     <li><a class="active" href="#">Litterae Notabiliores</a></li>
                     <li><a href="ec.html">Enlarged Capitals</a></li>
                     <li><a href="rubric.html">Rubrics</a></li>
                     <li><a href="space.html">Intertextual Space</a></li>
+					<li><a href="sample-ln.html" id="switch">To Sample Gallery</a></li>
                 </ul>
             </nav>
             <div id="thumbnails">
@@ -54,7 +55,7 @@
                 behavior: 'res',
                 maxPage: 30,
                 path: function(index) {
-                    return "features/lns/lns" + index + ".html";
+                    return "features/full/lns/lns" + index + ".html";
                 }
                 // appendCallback	: false, // USE FOR PREPENDING
             }, function(newElements, data, url){

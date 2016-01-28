@@ -17,32 +17,31 @@ index = 0
 fileNum = 1
 outfile.write("<div id='thumbnails'>")
 for row in enumerate(reader):
-    try:
-        full = row[1]['URL']
-        index += 1
-        ms = getMSNumber(full)
-        folio = getFolio(full)
-        x = int(int(row[1]['X'])*2.5)
-        y = int(int(row[1]['Y'])*2.5)
-        w = int(int(row[1]['W'])*2.5)
-        h = int(int(row[1]['H'])*2.5)
-        thumb = getSectionURL(full, x,y,w,h)
-        thumb = getPercentURL(thumb, percent)
+	try:
+		full = row[1]['URL']
+		index += 1
+		ms = getMSNumber(full)
+		folio = getFolio(full)
+		x = int(int(row[1]['X'])*2.5)
+		y = int(int(row[1]['Y'])*2.5)
+		w = int(int(row[1]['W'])*2.5)
+		h = int(int(row[1]['H'])*2.5)
+		thumb = getSectionURL(full, x,y,w,h)
+		thumb = getPercentURL(thumb, percent)
 
-        html = ("<a href='%s' data-lightbox='lb-%d' data-title='%s %s: %d,%d,%d,%d'>"
-                 "<img class='thumbnail thumbnail-short' onmouseover='preview.src=img%d.src' name='img%d' src='%s' alt=' '/>"
-                 "</a>\n") % (full, index, ms, folio, x, y, w, h, index, index, thumb)
+		html = ("<a href='%s' data-lightbox='lb-%d' data-title='%s %s: %d,%d,%d,%d'>"
+				 "<img class='thumbnail' onmouseover='preview.src=img%d.src' name='img%d' src='%s' alt=' '/>"
+				 "</a>\n") % (full, index, ms, folio, x, y, w, h, index, index, thumb)
 
-        if (index % nRowsPer == 0):
-            outfile.write("</div>")
-            fileNum += 1
-            newFileName= sys.argv[2] + str(fileNum) + ".html"
-            outfile = open(newFileName, 'wb')
-            outfile.write("<div id='thumbnails'>")
-        outfile.write(html)
-    except:
-        error.write(str(reader.line_num)+", "+str(row[1]['URL']))
-        pass
+		if (index % nRowsPer == 0):
+			outfile.write("</div>")
+			fileNum += 1
+			newFileName= sys.argv[2] + str(fileNum) + ".html"
+			outfile = open(newFileName, 'wb')
+			outfile.write("<div id='thumbnails'>")
+		outfile.write(html)
+	except:
+		error.write(str(reader.line_num)+", "+str(row[1]['URL']))
 
 
 

@@ -19,7 +19,7 @@ def getSectionURL(fullURL, X, Y, W, H):
 def makeTaggingSpreadsheet(dataCSV, emptyCSV):
     fieldnames = ['URL', 'letter', 'primary color', 'secondary colors', 'is_error', 'ms_no', 'folio', 'x', 'y', 'w', 'h', 'notes']
     empty = ''
-    scale_mult = 100/40
+    scale_mult = 2.5
 
     infile = open(dataCSV, 'rb')
     outfile = open(emptyCSV, 'wb')

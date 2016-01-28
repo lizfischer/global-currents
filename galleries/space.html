@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <title>Test Gallery - Intertextual Space</title>
+        <title>Final Dataset Gallery - Intertextual Space</title>
     	<link href="css/lightbox.css" rel="stylesheet">
         <link href="css/gallery.css" rel="stylesheet">
         
@@ -9,7 +9,7 @@
         
         <script> 
             $(function(){
-              $("#thumbnails").load("features/space/space.html"); 
+              $("#thumbnails").load("features/full/space/space.html"); 
             });
         </script> 
         <script type="text/javascript" src="js/jquery.infinitescroll.js"></script>
@@ -20,13 +20,14 @@
     <body>
         <div id="gallery" align="center">
             <nav>
-                <h3>Test Gallery - Intertextual Space</h3>
+                <h3>Final Dataset Gallery - Intertextual Space</h3>
                 <ul>
                     <li><a href="ln.html">Litterae Notabiliores</a></li>
                     <li><a href="ec.html">Enlarged Capitals</a></li>
                     <li><a href="rubric.html">Rubrics</a></li>
                     <li><a href="#" class="active">Intertextual Space</a></li>
-                </ul>
+					<li><a href="sample-space.html" id="switch">To Sample Gallery</a></li>
+				</ul>
             </nav>
             <div id="thumbnails">
                 
@@ -51,7 +52,7 @@
                 behavior: 'res',
                 maxPage: 400,
                 path: function(index) {
-                    return "features/space/space" + index + ".html";
+                    return "features/full/space/space" + index + ".html";
                 }
                 // appendCallback	: false, // USE FOR PREPENDING
             }, function(newElements, data, url){

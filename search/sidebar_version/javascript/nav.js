@@ -15,7 +15,7 @@ var ms_number = ['2I','2II','2III','3','4','9','10','11','12','16I','16II','17',
     '425','433','437','438','439','441','442','449','451','452','455','457','459','461','462','463',
     '466','468','469','470','473','475','478','480','481','483','484','485','486','505','511','628'];
 var centuries = ['9','10','11','12','13','14','15','16'];
-var super_scripts = ['','in','1','2','med','ex'];
+var super_scripts = ['in','1','2','med','ex'];
 var regions = [''];
 
 function getModule(index){
@@ -27,23 +27,23 @@ function getModule(index){
                                 "<select name='manuscript' id='ms-"+index+"'>" +
                                     "<option value=''></option>";
                                     for (var n in ms_number){
-                                        search_module += "<option value='"+n+"'>"+n+"</option>";
+                                        search_module += "<option value='"+ms_number[n]+"'>"+ms_number[n]+"</option>";
                                     }
               search_module += "</select>" +
                             "</div>" +
                             "<div class='six columns'>" +
                             "<!-- DATE -->" +
-                                "<label for='century-"+index+"'>Date Range</label>" +
+                                "<label for='century-"+index+"'>Date</label>" +
                                 "<select name='century' class='century' id='century-"+index+"'>" +
                                     "<option value=''></option>";
                                     for (var cent in centuries){
-                                        search_module += "<option value='"+cent+"'>"+cent+"</option>";
+                                        search_module += "<option value='"+centuries[cent]+"'>"+centuries[cent]+"</option>";
                                     }
               search_module += "</select>" +
                                 "<select name='super' class='super' id='super-"+index+"'>" +
                                     "<option value=''></option>";
                                     for (var s in super_scripts){
-                                        search_module += "<option value='"+s+"'>"+s+"</option>";
+                                        search_module += "<option value='"+super_scripts[s]+"'>"+super_scripts[s]+"</option>";
                                     }
               search_module += "</select>" +
                             "</div>" +

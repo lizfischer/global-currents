@@ -19,7 +19,6 @@ def getSectionURL(fullURL, X, Y, W, H):
 def makeTaggingSpreadsheet(dataCSV, emptyCSV):
     fieldnames = ['URL', 'letter', 'primary color', 'secondary colors', 'is_error', 'ms_no', 'folio', 'x', 'y', 'w', 'h', 'notes']
     empty = ''
-    scale_mult = 2.5
 
     infile = open(dataCSV, 'rb')
     outfile = open(emptyCSV, 'wb')
@@ -33,10 +32,10 @@ def makeTaggingSpreadsheet(dataCSV, emptyCSV):
             URL = row['URL']
 
             #Scale up coords for full size image
-            X = int(int(row['X']) * scale_mult)
-            Y = int(int(row['Y']) * scale_mult)
-            W = int(int(row['W']) * scale_mult)
-            H = int(int(row['H']) * scale_mult)
+            X = int(int(row['X']) * 2.5)
+            Y = int(int(row['Y']) * 2.5)
+            W = int(int(row['W']) * 2.5)
+            H = int(int(row['H']) * 2.5)
 
             URL = getSectionURL(URL, X, Y, W, H)
 

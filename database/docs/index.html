@@ -1,0 +1,689 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="main.css">
+        <title>Global Currents Database Documentation</title>
+    </head>
+    <body>
+        
+        <div id="nav-wrap">
+            <nav class="vertical">
+            <h2>Features</h2>
+            <ul>
+                <li><a href="#Enlarged_Capital">enlarged_capital</a></li>                
+                <li><a href="#Intertextual_Space">intertextual_space</a></li>
+                <li><a href="#Littera_Notabilior">littera_notabilior</a></li>
+                <li><a href="#Rubric">rubric</a></li>
+            </ul>
+            <h2>Supporting Tables</h2>
+            <ul>
+                <li>
+                    <a href="#Manuscript">manuscript</a>
+                    <ul>
+                        <li><a href="#Date">date</a></li>
+                        <li><a href="#Language">language</a></li>
+                        <li><a href="#Location">location</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="#Folio">folio</a></li>
+                <li><a href="#EC_Second_Colors">ec_second_colors</a></li>
+                <li><a href="#LN_Second_Colors">ln_second_colors</a></li>
+            </ul>
+            <h2>Training Set Tables</h2>
+            <ul>
+                <li><a href="#t_littera_notabilior">t_littera_notabilior</a></li>
+                <li><a href="#t_LN_Second_Colors">t_ln_second_colors</a></li>
+                <li><a href="#t_enlarged_capital">t_enlarged_capital</a></li>
+                <li><a href="#t_ec_second_colors">t_ec_second_colors</a></li>
+                <li><a href="#t_rubric">t_rubric</a></li>
+                <li><a href="#t_intertextual_space">t_intertextual_space</a></li>
+            </ul>
+        </nav>
+        </div>
+        
+        <section>
+            <header>
+                <h1>Global Currents Database Documentation</h1>
+            </header> 
+            
+            <!-- Enlarged Capital -->
+            <article>
+                <a name="Enlarged_Capital"></a>
+                <h2>enlarged_capital</h2>
+                <h3>Description</h3>
+                    <p>Information on Enlarged Capitals.</p>
+                <h3>Attributes</h3>
+                <table>
+                    <!-- URL -->
+                    <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">URL</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">The URL of the image.</td>
+                    </tr>
+                    <!-- X -->
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">X</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">X coordinate of top left corner of bounding box.</td>
+                    </tr>
+                    <!-- Y -->
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">Y</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Y coordinate of top left corner of bounding box.</td>
+                    </tr>
+                    <!-- MS_Number -->
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">MS_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Foreign key, references MS_Number in <a href="#Folio">Folio</a>.<br> The number of the manuscript.</td>
+                    </tr>
+                    <!-- F_Number -->
+                    <tr>
+                        <td class="type">VARCHAR(8)</td>
+                        <td class="name">F_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Foreign key, references Number in <a href="#Folio">Folio</a>.<br> The number of the folio or page (e.g. "12 V", "167")</td>
+                    </tr>
+                    <!-- W -->
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">W</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Width of the bounding box.</td>
+                    </tr>
+                    <!-- H -->
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">H</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Height of the bounding box.</td>
+                    </tr>
+                    <!-- Primary_Color -->
+                    <tr>
+                        <td class="type">VARCHAR(16)</td>
+                        <td class="name">Primary_Color</td>
+                        <td class="constraints"></td>
+                        <td class="description">The main color of the letter. <br>For other colors, see <a href="#EC_Second_Colors">EC_Second_Colors</a></td>
+                    </tr>
+                    <!-- Letter -->
+                    <tr>
+                        <td class="type">CHAR(1)</td>
+                        <td class="name">Letter</td>
+                        <td class="constraints"></td>
+                        <td class="description">Which letter was found.</td>
+                    </tr>
+                   <!-- IsError -->
+                    <tr>
+                        <td class="type">TINYINT(1)</td>
+                        <td class="name">IsError</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">1 if the instance is an error, 0 otherwise.</td>
+                    </tr>
+                    <!-- Notes -->
+                    <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">Notes</td>
+                        <td class="constraints"></td>
+                        <td class="description">Notes on image left during tagging.</td>
+                    </tr>
+                </table>
+                
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(URL) {primary}</b></li>
+                <li>(MS_Number, F_Number, X, Y)</li>
+                </ul>
+                
+                <h3>Referenced By</h3>
+                <ul>
+                    <li><a href="#EC_Second_Colors">EC_Second_Colors</a></li>
+                </ul>
+            </article>
+            
+            <!-- Intertextual Space -->
+            <article>
+                <a name="Intertextual_Space"></a>
+                <h2>intertextual_space</h2>
+                <h3>Description</h3>
+                    <p>Information on Intertextual Space.</p>
+                <table>
+                    <!-- URL -->
+                    <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">URL</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">The URL of the image.</td>
+                    </tr>    
+                    <!-- X -->
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">X</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">X coordinate of top left corner of bounding box.</td>
+                    </tr>
+                    <!-- Y -->
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">Y</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Y coordinate of top left corner of bounding box.</td>
+                    </tr>
+                    <!-- MS_Number -->
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">MS_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Foreign key, references MS_Number in <a href="#folio">Folio</a>.<br> The number of the manuscript.</td>
+                    </tr>
+                    <!-- F_Number -->
+                    <tr>
+                        <td class="type">VARCHAR(8)</td>
+                        <td class="name">F_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Foreign key, references Number in <a href="#folio">Folio</a>.<br> The number of the folio or page (e.g. "12 V", "167")</td>
+                    </tr>
+                    <!-- W -->
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">W</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Width of the bounding box.</td>
+                    </tr>
+                    <!-- H -->
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">H</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Height of the bounding box.</td>
+                    </tr>
+                    <!-- IsError -->
+                    <tr>
+                        <td class="type">TINYINT(1)</td>
+                        <td class="name">IsError</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">1 if the instance is an error, 0 otherwise.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">Notes</td>
+                        <td class="constraints"></td>
+                        <td class="description">Notes on image left during tagging.</td>
+                    </tr>
+                </table>
+                
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(URL) {primary}</b></li>
+                <li>(MS_Number, F_Number, F_RV, X, Y)</li>
+                </ul>
+                <h3>Referenced By</h3>
+                <ul>
+                </ul>
+            </article>
+            
+            <!-- Littera Notabilior -->
+            <article>
+                <a name="Littera_Notabilior"></a>
+                <h2>littera_notabilior</h2>
+                <h3>Description</h3>
+                    <p>Information on Litterae Norabiliores.</p>
+                <h3>Attributes</h3>
+                <table>
+                    <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">URL</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">The URL of the image.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">X</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">X coordinate of top left corner of bounding box.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">Y</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Y coordinate of top left corner of bounding box.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">W</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Width of the bounding box.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">H</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Height of the bounding box.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">MS_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Foreign key, references MS_Number in <a href="#folio">Folio</a>.<br> The number of the manuscript.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(8)</td>
+                        <td class="name">F_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Foreign key, references Number in <a href="#folio">Folio</a>.<br> The number of the folio or page (e.g. "12 V", "167")</td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td class="type">CHAR(1)</td>
+                        <td class="name">Letter</td>
+                        <td class="constraints"></td>
+                        <td class="description">Which letter was found.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(16)</td>
+                        <td class="name">Primary_Color</td>
+                        <td class="constraints"></td>
+                        <td class="description">The main color of the letter. <br>For other colors, see <a href="#LN_Second_Colors">LN_Second_Colors</a></td>
+                    </tr>
+                    <tr>
+                        <td class="type">TINYINT(1)</td>
+                        <td class="name">IsError</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">1 if the instance is an error, 0 otherwise.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">Notes</td>
+                        <td class="constraints"></td>
+                        <td class="description">Notes on image left during tagging.</td>
+                    </tr>
+                </table>
+                
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(URL) {primary}</b></li>
+                <li>(MS_Number, F_Number, F_RV, X, Y)</li>
+                </ul>
+                <h3>Referenced By</h3>
+                <ul>
+                    <li><a href="#folio">LN_Second_Colors</a></li>
+                </ul>
+            </article>
+            
+            <!-- Rubric -->
+            <article>
+                <a name="Rubric"></a>
+                <h2>rubric</h2>
+                <h3>Description</h3>
+                    <p>Information on Rubrics.</p>
+                <h3>Attributes</h3>
+                <table>
+                   <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">URL</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">The URL of the image.</td>
+                   </tr>
+                   <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">X</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">X coordinate of top left corner of bounding box.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">Y</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Y coordinate of top left corner of bounding box.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">W</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Width of the bounding box.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">H</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Height of the bounding box.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">MS_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Foreign key, references MS_Number in <a href="#Folio">Folio</a>.<br> The number of the manuscript.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(8)</td>
+                        <td class="name">F_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Foreign key, references Number in <a href="#folio">Folio</a>.<br> The number of the folio or page (e.g. "12 V", "167")</td>
+                    </tr>
+                    <tr>
+                        <td class="type">TINYINT(1)</td>
+                        <td class="name">IsError</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">1 if the instance is an error, 0 otherwise.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">Notes</td>
+                        <td class="constraints"></td>
+                        <td class="description">Notes on image left during tagging.</td>
+                    </tr>
+                </table>
+                
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(URL) {primary}</b></li>
+                <li>(MS_Number, F_Number, F_RV, X, Y)</li>
+                </ul>
+                <h3>Referenced By</h3>
+                <ul>
+                </ul>
+            </article>
+        
+            <!-- Manuscript -->
+            <article>
+                <a name="Manuscript"></a>
+                <h2>Manuscript</h2>
+               <h3>Description</h3>
+                    <p> Manuscript-specific information.</p>
+                <h3>Attributes</h3>
+                <table>
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">Number</td>
+                        <td class="constraints">UNIQUE, NOT NULL</td>
+                        <td class="description">Manuscript number. <br>Referenced in <a href="#Folio">Folio</a>, <a href="#Date">Date</a>, <a href="#Language">Language</a>, <a href="#Location">Location</a>.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(64)</td>
+                        <td class="name">Title</td>
+                        <td class="constraints"></td>
+                        <td class="description">Title of the manuscript.</td>
+                    </tr>
+                </table>
+                
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(Number) {primary}</b></li>
+                </ul>
+                
+                <h3>Referenced By</h3>
+                <ul>
+                    <li><a href="#Folio">Folio</a></li>
+                    <li><a href="#Date">Date</a></li>
+                    <li><a href="#Language">Language</a></li>
+                    <li><a href="#Location">Location</a></li>
+                </ul>
+            </article>
+        
+            <!-- Date -->
+            <article>
+                <a name="Date"></a>
+                <h2>date</h2>
+                <h3>Description</h3>
+                    <p>The approximate dates for manuscripts.</p>
+               <h3>Attributes</h3>
+                <table>
+                    <tr>
+                        <td class="type">AUTO_INCREMENT</td>
+                        <td class="name">ID</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Unique identifier with no meanout outside database (surrogate key). Allows for primary key if Super is allowed to be NULL.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">TINYINT(2)</td>
+                        <td class="name">Century</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Which century (e.g. 11, 12).</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">Super</td>
+                        <td class="constraints"></td>
+                        <td class="description">Superscript indicating which part of century. <br> <b>Values</b>: "in" (early), "1" (mid first half), "med" (mid), "2" (mid second half), "ex" (late), NULL (unspecified).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">MS_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">The number of the manuscript.<br> Foreign key, references Number in <a href="#Manuscript">Manuscript</a>. <br>Cascade on delete and update.</td>
+                    </tr>
+                </table>
+                
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(ID) {primary}</b></li>
+                    <li>(Century, Super, MS_Number)</li>
+                </ul>
+            </article>
+        
+            <!-- Language -->
+            <article>
+                <a name="Language"></a>
+                <h2>language</h2>
+                <h3>Description</h3>
+                    <p>Languages of the manuscripts.</p>
+                <h3>Attributes</h3>
+                <table>
+                    <tr>
+                        <td class="type">VARCHAR(16)</td>
+                        <td class="name">Language</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Which century (e.g. 11, 12).</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">MS_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description"> The number of the manuscript.<br> Foreign key, references Number in <a href="#Manuscript">Manuscript</a>. <br>Cascade on delete and update.</td>
+                    </tr>
+                </table>
+                
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(Language, MS_Number) {primary}</b></li>
+                </ul>
+            </article>
+        
+            <!-- Location -->
+            <article>
+                <a name="Location"></a>
+                <h2>location</h2>
+                <h3>Description</h3>
+                    <p>Known locations of the manuscripts.</p>
+               <h3>Attributes</h3>
+                <table>
+                    <tr>
+                        <td class="type">AUTO_INCREMENT</td>
+                        <td class="name">ID</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Unique identifier with no meanout outside database (surrogate key). Allows for primary key if Institution is allowed to be NULL.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(64)</td>
+                        <td class="name">Region</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Region (e.g. Wales, Midlands, Kent)</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(64)</td>
+                        <td class="name">Institution</td>
+                        <td class="constraints"></td>
+                        <td class="description">Region (e.g. Wales, Midlands, Kent)</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">MS_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description"> The number of the manuscript.<br> Foreign key, references Number in <a href="#Manuscript">Manuscript</a>. <br>Cascade on delete and update.</td>
+                    </tr>
+                </table>
+                
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(ID) {primary}</b></li>
+                    <li>(Region, Institution, MS_Number)</li>
+                </ul>
+                <h3>Referenced By</h3>
+            </article>
+        
+            <!-- Folio -->
+            <article>
+                <a name="Folio"></a>
+                <h2>folio</h2>
+                <h3>Description</h3>
+                    <p>Folios</p>
+               <h3>Attributes</h3>
+                <table>
+                    <tr>
+                        <td class="type">INT(4)</td>
+                        <td class="name">Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Folio or page number.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">CHAR(1)</td>
+                        <td class="name">RV</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">Recto ('R') or verso ('V') of folio. 'P' if manuscript is paginated.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(4)</td>
+                        <td class="name">MS_Number</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description"> The number of the manuscript.<br> Foreign key, references Number in <a href="#Manuscript">Manuscript</a>. <br>Cascade on delete and update.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(64)</td>
+                        <td class="name">URL</td>
+                        <td class="constraints"></td>
+                        <td class="description">The full-folio image.</td>
+                    </tr>
+                </table>
+                
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(Number, RV, MS_Number) {primary}</b></li>
+                </ul>
+                <h3>Referenced By</h3>
+                <ul>
+                    <li><a href="#Enlarged_Capital">Enlarged_Capital</a></li>
+                    <li><a href="#Intertextual_Space">Intertextual_Space</a></li>
+                    <li><a href="#Littera_Notabilior">Littera_Notabilior</a></li>
+                    <li><a href="#Rubric">Rubric</a></li>
+                </ul>
+            </article>
+        
+            <!-- EC Second Colors -->
+            <article>
+                <a name="EC_Second_Colors"></a>
+                <h2>ec_second_colors</h2>
+                <h3>Description</h3>
+                    <p>Secondary colors of Enlarged Capitals</p>
+                <h3>Attributes</h3>
+                <table>
+                    <!-- URL -->
+                    <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">URL</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">URL of the Enlarged Capital.<br>Foreign key, references URL in <a href="#Enlarged_Capital">enlarged_capital</a>. <br>Cascade on delete and update.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(16)</td>
+                        <td class="name">Color</td>
+                        <td class="description">A secondary color.</td>
+                    </tr>
+                </table>
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(URL, Color) {primary}</b></li>
+                </ul>
+                <h3>References</h3>
+                <ul>
+                    <li><a href="#Enlarged_Capital">enlarged_capital</a></li>
+                </ul>
+            </article>
+            
+            <!-- LN Second Colors -->
+            <article>
+                <a name="LN_Second_Colors"></a>
+                <h2>LN_Second_Colors</h2>
+               <h3>Description</h3>
+                    <p>Secondary colors of Litterae Notabiliores.</p>
+                <h3>Attributes</h3>
+               <table>
+                     <!-- URL -->
+                    <tr>
+                        <td class="type">VARCHAR(128)</td>
+                        <td class="name">URL</td>
+                        <td class="constraints">NOT NULL</td>
+                        <td class="description">URL of the Littera Notabilior.<br>Foreign key, references URL in <a href="#Littera_Notabilior">littera_notabilior</a>. <br>Cascade on delete and update.</td>
+                    </tr>
+                    <tr>
+                        <td class="type">VARCHAR(16)</td>
+                        <td class="name">Color</td>
+                        <td class="description">A secondary color.</td>
+                    </tr>
+                </table>
+                <h3>Keys</h3>
+                <ul class="keys">
+                    <li><b>(URL, Color) {primary}</b></li>
+                </ul>
+                <h3>References</h3>
+                <ul>
+                    <li><a href="#Littera_Notabilior">littera_notabilior</a></li>
+                </ul>
+            </article>
+        
+        
+            <article>
+                <a name="t_littera_notabilior"></a>
+                <h2>t_littera_notabilior</h2>
+               <h3>Description</h3>
+                    <p>Training data set equivilant of <a href="#Littera_Notabilior">ln_second_colors</a>.</p>
+            </article>
+            <article>
+                <a name="t_LN_Second_Colors"></a>
+                <h2>t_ln_second_colors</h2>
+               <h3>Description</h3>
+                    <p>Training data set equivilant of <a href="#LN_Second_Colors">ln_second_colors</a>.</p>
+            </article>
+            <article>
+                <a name="t_enlarged_capital"></a>
+                <h2>t_enlarged_capital</h2>
+               <h3>Description</h3>
+                    <p>Training data set equivilant of <a href="#Enlarged_Capital">enlarged_capital</a>.</p>
+            </article>
+            <article>
+                <a name="t_ec_Second_Colors"></a>
+                <h2>t_ec_second_colors</h2>
+               <h3>Description</h3>
+                    <p>Training data set equivilant of <a href="#EC_Second_Colors">ec_second_colors</a>.</p>
+            </article>
+            <article>
+                <a name="t_rubric"></a>
+                <h2>t_rubric</h2>
+               <h3>Description</h3>
+                    <p>Training data set equivilant of <a href="#Rubric">rubric</a>.</p>
+            </article>
+            <article>
+                <a name="t_intertextual_space"></a>
+                <h2>t_intertextual_space</h2>
+               <h3>Description</h3>
+                    <p>Training data set equivilant of <a href="#Intertextual_Space">intertextual_space</a>.</p>
+            </article>
+        </section>
+        
+    </body>
+</html>

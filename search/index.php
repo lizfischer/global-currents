@@ -6,7 +6,10 @@
     </head>
     <body>
         <div id="search">
-            <script>document.write(getModule(null, 0));</script>
+            <form>
+                <script>document.write(getModule(null, 0));</script>
+                <button type="submit">Search</button>
+            </form>
         </div>
     </body>
 </html>

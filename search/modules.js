@@ -131,8 +131,22 @@ function getModule(type, index) {
 function getLNModule(index) {
     var color = getColorFields(index);
     var letter = getLetterFields(index);
-    var lnclass = getLNClassFields(index);
+    // var lnclass = getLNClassFields(index);
 
-    var html = color+letter+lnclass;
+    var html = color+letter;//+lnclass;
+    return html;
+}
+
+function getECModule(index) {
+    var color = getColorFields(index);
+    var letter = getLetterFields(index);
+
+    var html = color+letter;
+    return html;
+}
+
+function getRubricModule(index) {
+
+    var html = '';
     return html;
 }

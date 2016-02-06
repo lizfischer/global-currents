@@ -122,7 +122,22 @@ function getModule(type, index) {
     var date = getDateFields(index);
     var region = getRegionFields(index);
 
-    var featureSpecific = getLNModule(index);
+    var featureSpecific;
+    switch (type) {
+        case "LN":
+            featureSpecific = getLNModule(index);
+            break;
+        case "EC":
+            featureSpecific = getECModule(index);
+            break;
+        case "IS":
+            featureSpecific = getISModule(index);
+            break;
+        case "RB":
+            featureSpecific = getRBModule(index);
+            break;
+    }
+
 
     var html = ms+date+region+featureSpecific;
     return html;
@@ -131,8 +146,8 @@ function getModule(type, index) {
 function getLNModule(index) {
     var color = getColorFields(index);
     var letter = getLetterFields(index);
-    var lnclass = getLNClassFields(index);
+    //var lnclass = getLNClassFields(index);
 
-    var html = color+letter+lnclass;
+    var html = color+letter;//+lnclass;
     return html;
 }

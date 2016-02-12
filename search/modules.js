@@ -2,6 +2,14 @@
  * Created by liz on 2/1/16.
  */
 
+/* *********
+   Constants
+   ********* */
+var features = [
+    {'shorthand':'LN', 'human':'Litterae Notabiliores'},
+    {'shorthand':'EC', 'human':'Enlarged Capitals'},
+    {'shorthand':'RB', 'human':'Rubrics'},
+    {'shorthand':'IS', 'human':'Intertextual Space'}];
 var colors = ['red', 'blue', 'black', 'green', 'yellow', 'gold', 'purple', 'multi'];
 var ms_number = ['2I','2II','2III','3','4','9','10','11','12','16I','16II','17','22','23','26',
     '27','28','29','30','31','33','41','42','44','46','47','48','49','50','51','52','54','55','58',
@@ -16,15 +24,32 @@ var ms_number = ['2I','2II','2III','3','4','9','10','11','12','16I','16II','17',
     '425','433','437','438','439','441','442','449','451','452','455','457','459','461','462','463',
     '466','468','469','470','473','475','478','480','481','483','484','485','486','505','511','628'];
 var centuries = ['9','10','11','12','13','14','15','16'];
-var super_scripts = ['', 'in','1','2','med','ex'];
+var super_scripts = ['', 'in','1','2','med','ex']; //TODO make acutal superscript? Object the "normal" to codes?
 var regions = ['North West England', 'North East England', 'Yorkshire and the Humber', 'Wales', 'West Midlands',
     'East Midlands', 'South West England', 'South East England', 'London', 'East of England', 'Italy', 'Germany',
     'France'];
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
     'V', 'W', 'X', 'Y', 'Z'];
-var lnclasses = ['L', 'I', 'M', 'D', 'S'];
+//TODO update usage of this!!!
+var lnclasses = [
+    {'shorthand':'L', 'human':'Large & Intricate'},
+    {'shorthand':'I', 'human':'Intricate'},
+    {'shorthand':'M', 'human':'Multi-colored'},
+    {'shorthand':'D', 'human':'Dual-colored'},
+    {'shorthand':'S', 'human':'Single-colored'];
+//TODO update usage of this!!!
+var LN_EC_errors = [
+    {'shorthand':'MC', 'human':'Multiple caught'},
+    {'shorthand':'NL', 'human':'Non-letter'},
+    {'shorthand':'PT', 'human':'Partial'},
+    {'shorthand':'IN', 'human':'Incorrect feature'}];
+var IS_errors = [
+    {'shorthand':'1', 'human':'Physical element'},
+    {'shorthand':'2', 'human':'Textual element'}];
 
-
+/* ***************************
+   Form field getter functions
+   *************************** */
 function getMSFields(index) {
     var ms =  "<!-- MANUSCRIPT -->" +
         "<div class='ms' id='ms-"+index+"'>"+
@@ -68,6 +93,28 @@ function getRegionFields(index) {
     region += "</select>"+
         "</div>";
     return region;
+}
+function getErrorFields(index, type){
+    var html = "<input type='checkbox' name='error-"+index+"' value='error'>Include Errors<br>"
+
+    // LN or EC Error Types
+    if (type == features[0].shorthand||
+        type == features[1].shorthand) {
+        html += "<div class='errorType' id='errorType-"+index+"'>" +
+            "<label for=''"+
+            "<select multiple name='errorSelect' id='errorSelect-"+index+"'>" +
+                "<option value='' selected>all</option>";
+                for (var e in LN_EC_errors){
+                   html+="<option value'"+LN_EC_errors[e].shorthand+"'>"+LN_EC_errors[e].human+"</option>";
+                }
+        html+= "</select>"+
+            "</div>";
+    }
+    // IS Error Types
+    else if (type == features[2].shorthand){
+
+    }
+    return html;
 }
 function getColorFields(index) {
     var color_html = "<!-- COLORS -->" +
@@ -116,38 +163,72 @@ function getLNClassFields(index) {
         "</div>";
     return lnclass;
 }
+function getLNModule(index) {
+    var color = getColorFields(index);
+    var letter = getLetterFields(index);
+    var lnclass = getLNClassFields(index);
+
+    return color+letter+lnclass;
+}
+function getECModule(index){
+    var color = getColorFields(index);
+    var letter = getLetterFields(index);
+
+    var html = color+letter;
+    return color+letter;
+}
+
 
 function getModule(type, index) {
     var ms = getMSFields(index);
     var date = getDateFields(index);
     var region = getRegionFields(index);
+    var error = getErrorFields(index, type);
 
     var featureSpecific;
     switch (type) {
-        case "LN":
+        case features[0].shorthand:
             featureSpecific = getLNModule(index);
             break;
-        case "EC":
+        case features[1].shorthand:
             featureSpecific = getECModule(index);
             break;
-        case "IS":
-            featureSpecific = getISModule(index);
-            break;
-        case "RB":
-            featureSpecific = getRBModule(index);
-            break;
+        default:
+            featureSpecific = "";
     }
 
-
-    var html = ms+date+region+featureSpecific;
-    return html;
+    return ms+date+region+featureSpecific+error;
 }
 
-function getLNModule(index) {
-    var color = getColorFields(index);
-    var letter = getLetterFields(index);
-    //var lnclass = getLNClassFields(index);
 
-    var html = color+letter;//+lnclass;
-    return html;
-}
+/* ****************************
+   Feature select functionality
+   **************************** */
+$(document).ready(function() {
+    for (var i in features){
+        var f = features[i];
+        $('#feature-type').append("<option value='"+ f.shorthand+"'>"+ f.human +"</option>");
+    }
+
+    var intID = 0;
+    $("#add").click(function() {
+        var selected_index = document.getElementById("feature-type").selectedIndex;
+        var feature_type = document.getElementById("feature-type").options[selected_index].value;
+
+        var module = getModule(feature_type, intID);
+
+        var wrapper = $("<div class='feature'></div>");
+
+        var removeButton = $("<input class='remove' value='x' type='button'>");
+        removeButton.click(function() {
+            $(this).closest("div .feature").remove();
+        });
+        $(wrapper).append(removeButton);
+
+        $(wrapper).append(module);
+
+        intID += 1;
+
+        $("#feature-search-wrapper").append(wrapper);
+    });
+});

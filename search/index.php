@@ -8,7 +8,7 @@
     <body>
         <div id="search">
             <form action="index.php" method="get">
-                <label>Please choose a feature for which to search.</label>
+                <label>Select feature for which to search.</label>
                 <select id="feature-type">
                     <script>
                         for (var i in features){
@@ -19,7 +19,7 @@
                 </select>
                 <input type="button" value="Go" class="add" id="add" />
             </form>
-            <form action="index.php" method="get">
+            <form action="results.php" method="get">
                 <fieldset id="feature-search-wrapper">
                 </fieldset>
                 <input class="button-primary" type="submit" name="submit" value="Search">

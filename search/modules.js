@@ -30,14 +30,12 @@ var regions = ['North West England', 'North East England', 'Yorkshire and the Hu
     'France'];
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
     'V', 'W', 'X', 'Y', 'Z'];
-//TODO update usage of this!!!
 var lnclasses = [
     {'shorthand':'L', 'human':'Large & Intricate'},
     {'shorthand':'I', 'human':'Intricate'},
     {'shorthand':'M', 'human':'Multi-colored'},
     {'shorthand':'D', 'human':'Dual-colored'},
-    {'shorthand':'S', 'human':'Single-colored'];
-//TODO update usage of this!!!
+    {'shorthand':'S', 'human':'Single-colored'}];
 var LN_EC_errors = [
     {'shorthand':'MC', 'human':'Multiple caught'},
     {'shorthand':'NL', 'human':'Non-letter'},
@@ -95,26 +93,39 @@ function getRegionFields(index) {
     return region;
 }
 function getErrorFields(index, type){
-    var html = "<input type='checkbox' name='error-"+index+"' value='error'>Include Errors<br>"
-
-    // LN or EC Error Types
-    if (type == features[0].shorthand||
-        type == features[1].shorthand) {
-        html += "<div class='errorType' id='errorType-"+index+"'>" +
-            "<label for=''"+
-            "<select multiple name='errorSelect' id='errorSelect-"+index+"'>" +
+    var html = "<input type='checkbox' id='error-"+index+"' name='error-"+index+"' onclick=\"showMe('error-"+index+"')\"" +
+        " value='error'>Include Errors<br>"
+        // Not Rubrics
+        if (type != features[3].shorthand) {
+            html += "<div class='errorType' id='errorType-" + index + "'style='display: none;'>" +
+                "<label for=''></label>" +
+                "<select multiple name='errorSelect' id='errorSelect-" + index + "'>" +
                 "<option value='' selected>all</option>";
-                for (var e in LN_EC_errors){
-                   html+="<option value'"+LN_EC_errors[e].shorthand+"'>"+LN_EC_errors[e].human+"</option>";
+            // LN or EC Error Types
+            if (type == features[0].shorthand || type == features[1].shorthand) {
+                for (var e in LN_EC_errors) {
+                    html += "<option value'" + LN_EC_errors[e].shorthand + "'>" + LN_EC_errors[e].human + "</option>";
                 }
-        html+= "</select>"+
-            "</div>";
-    }
-    // IS Error Types
-    else if (type == features[2].shorthand){
-
-    }
+            }
+            // IS Error Types
+            else if (type == features[2].shorthand) {
+               for (var e in IS_errors) {
+                    html += "<option value'" + IS_errors[e].shorthand + "'>" + IS_errors[e].human + "</option>";
+                }
+            }
+            html += "</select>" +
+                "</div>";
+        }
     return html;
+}
+function showMe (boxID) {
+    var index = boxID.split("-")[1]
+    var checkbox = document.getElementById(boxID);
+    var vis = "none";
+    if(checkbox.checked){
+        vis = "block";
+    }
+    document.getElementById("errorType-"+index).style.display = vis;
 }
 function getColorFields(index) {
     var color_html = "<!-- COLORS -->" +
@@ -157,12 +168,14 @@ function getLNClassFields(index) {
         "<select multiple name='lnclass' id='lnclass-"+index+"'>" +
         "<option value='' selected>any</option>";
         for (var c in lnclasses){
-            lnclass += "<option value='"+lnclasses[c]+"'>"+lnclasses[c]+"</option>";
+            lnclass += "<option value='"+lnclasses[c].shorthand+"'>"+lnclasses[c].human+"</option>";
         }
     lnclass += "</select>"+
         "</div>";
+
     return lnclass;
 }
+
 function getLNModule(index) {
     var color = getColorFields(index);
     var letter = getLetterFields(index);
@@ -177,7 +190,6 @@ function getECModule(index){
     var html = color+letter;
     return color+letter;
 }
-
 
 function getModule(type, index) {
     var ms = getMSFields(index);
@@ -200,7 +212,6 @@ function getModule(type, index) {
     return ms+date+region+featureSpecific+error;
 }
 
-
 /* ****************************
    Feature select functionality
    **************************** */
@@ -214,17 +225,17 @@ $(document).ready(function() {
     $("#add").click(function() {
         var selected_index = document.getElementById("feature-type").selectedIndex;
         var feature_type = document.getElementById("feature-type").options[selected_index].value;
+        var feature_short = features[selected_index].shorthand;
 
         var module = getModule(feature_type, intID);
 
-        var wrapper = $("<div class='feature'></div>");
+        var wrapper = $("<div class='feature' data-feature='"+feature_short+"'></div>");
 
         var removeButton = $("<input class='remove' value='x' type='button'>");
         removeButton.click(function() {
             $(this).closest("div .feature").remove();
         });
         $(wrapper).append(removeButton);
-
         $(wrapper).append(module);
 
         intID += 1;

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>Sampled Dataset Gallery - Intertextual Space</title>
+        <link href="css/lightbox.css" rel="stylesheet">
+        <link href="css/gallery.css" rel="stylesheet">
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+        <script>
+            $(function(){
+              $("#thumbnails").load("features/samples/space/space.html");
+            });
+        </script>
+        <script type="text/javascript" src="js/jquery.infinitescroll.js"></script>
+        <script type="text/javascript" src="js/RES-trigger.js"></script>
+
+    </head>
+
+    <body>
+        <div id="gallery" align="center">
+            <nav>
+                <h3>Sampled Dataset Gallery - Intertextual Space</h3>
+                <ul>
+                    <li><a href="sample-ln.html">Litterae Notabiliores</a></li>
+                    <li><a href="sample-ec.html">Enlarged Capitals</a></li>
+                    <li><a href="sample-rubric.html">Rubrics</a></li>
+                    <li><a href="#" class="active">Intertextual Space</a></li>
+                    <li><a href="space.html" id="switch">To Full Gallery</a></li>
+                </ul>
+            </nav>
+            <div id="thumbnails">
+
+            </div>
+
+            <!-- <div class="preview" align="center">
+                <img name="preview"' src="images/img1.jpg" alt=""/>
+            </div> -->
+
+
+            <a id="next" href="features/samples/space/space2.html">Load More</a>
+        </div> <!-- Close the gallery div -->
+        <!-- Lightbox -->
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#thumbnails').infinitescroll({
+                navSelector: "#next:last",
+                nextSelector: "#next:last",
+                itemSelector: "#thumbnails",
+                debug: true,
+                dataType: 'html',
+                behavior: 'res',
+                maxPage: 400,
+                path: function(index) {
+                    return "features/samples/space/space" + index + ".html";
+                }
+                // appendCallback	: false, // USE FOR PREPENDING
+            }, function(newElements, data, url){
+              // used for prepending data
+                // $(newElements).css('background-color','#ffef00');
+                // $(this).prepend(newElements);
+            });
+        });
+        </script>
+
+    </body>
+</html>

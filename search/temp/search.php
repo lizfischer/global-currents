@@ -6,8 +6,6 @@ include_once("../mysqlConfig.php");
 
 $perpage = 50;
 $startat=$_REQUEST['page'] * $perpage;
-$lynx = $html = "";
-
 $pages = 0;
 
 function getPerPage(){
@@ -15,6 +13,12 @@ function getPerPage(){
 
     $perpage = $_REQUEST["perpage"];
     $startat = $_REQUEST['page']* $perpage;
+}
+
+function getNRows(){
+    $query = getQuery();
+    $result = $GLOBALS['db']->query($query);
+    return $result->rowCount();
 }
 
 function getQuery(){
@@ -25,8 +29,7 @@ function getQuery(){
 }
 
 function getPages($query){
-    $result = $GLOBALS['db']->query($query);
-    return ceil($result->rowCount() / $GLOBALS['perpage']);
+    return ceil(getNRows($query) / $GLOBALS['perpage']);
 }
 
 function runQuery(){

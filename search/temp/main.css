@@ -1,0 +1,20 @@
+h1 {
+    font-size: 1.4em;
+}
+
+img {
+    height: 80px;
+    margin: 2px;
+}
+
+#query {
+    width: 60%;
+}
+
+.result-wrap{
+    display:inline-block;
+}
+
+.result-data {
+    display: none;
+}

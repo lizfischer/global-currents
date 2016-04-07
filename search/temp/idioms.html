@@ -1,5 +1,11 @@
-Order by date: SELECT * FROM {feature} AS f JOIN date AS d on f.msNumber = d.msNumber ORDER BY century
+<html>
+<head>
+    <title>SQL search idioms</title>
+</head>
+<body>
+    <p>Order by date: SELECT * FROM {feature} AS f JOIN date AS d on f.msNumber = d.msNumber ORDER BY century</p>
 
-Limit to one century per:  SELECT * FROM {feature} AS f JOIN date AS d on f.msNumber = d.msNumber WHERE d.century = (SELECT MIN(century) FROM date WHERE msNumber = f.msNumber) ORDER BY century
+    <p>Limit to one century per:  SELECT * FROM {feature} AS f JOIN date AS d on f.msNumber = d.msNumber WHERE d.century = (SELECT MIN(century) FROM date WHERE msNumber = f.msNumber) ORDER BY century</p>
 
-
+</body>
+</html>

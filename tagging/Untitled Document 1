@@ -1,0 +1,25 @@
+import csv, sys
+from gcutils.iiif import *
+
+def getSecColors(row):
+    string = row[1]['secondary_colors']
+    if string.strip() != "":
+        return [x.strip() for x in string.split(';')]
+    return []
+
+def getError(row):
+    string = row[1]['is_error']
+    if string.strip() == "T":
+        return 1
+    return 0
+
+
+
+def main():
+    if len(sys.argv) < 3: #if not enough arguments
+        print ("Usage: python tagging_to_tables.py <input.csv> <base for output>")
+    else:
+        extract()
+
+if __name__ == "__main__":
+    main()

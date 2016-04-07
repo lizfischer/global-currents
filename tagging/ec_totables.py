@@ -34,19 +34,19 @@ def extract():
             # url x y msNumber folioNumber w h primaryColor letter isError errorType notes
             main_writer.writerow([
                 row[1]['URL'], row[1]['x'], row[1]['y'], getMSNumber(row[1]['URL']), getFolio(row[1]['URL']), row[1]['w'],
-                row[1]['h'], row[1]['primary_color'].strip().lower(), row[1]['letter'].strip().upper(), getError(row), 
+                row[1]['h'], row[1]['primary_color'].strip().lower(), row[1]['letter'].strip().upper(), getError(row), row[1]['error_type'], 
                 row[1]['notes'].replace("\"", "'").strip()
             ])
 
             for color in getSecColors(row):
-                c_writer.writerow([row[1]['URL'], color.strip])
+                c_writer.writerow([row[1]['URL'], color.strip()])
     return
 
 
 
 def main():
     if len(sys.argv) < 3: #if not enough arguments
-        print ("Usage: python tagging_to_tables.py <input.csv> <base for output>")
+        print ("Usage: python ec_totables.py <input.csv> <base for output>")
     else:
         extract()
 

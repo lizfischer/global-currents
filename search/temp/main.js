@@ -1,5 +1,8 @@
 $(document).ready(function(){
-    $('.result-wrap img').click(function() {
-        $(this).siblings('.result-data').fadeIn(300).delay(1000).fadeOut(300);
+    $('.result-wrap img').hover(function() {
+        delay(2000);
+        $(this).siblings('.result-data').show();
+    }, function(){
+        $(this).siblings('.result-data').hide();
     });
 });

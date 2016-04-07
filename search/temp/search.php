@@ -33,6 +33,13 @@ function getPages($query){
     return ceil(getNRows($query) / $GLOBALS['perpage']);
 }
 
+function getFolioURL($url){
+    $array = split('/', $url);
+    $array[6]='full';
+    $folio = implode('/', $array);
+    return $folio;
+}
+
 function runQuery(){
     try {
         $query = getQuery();
@@ -60,10 +67,12 @@ function printResults($result){
         $result_wrap = "<div class='result-wrap'>";
         $img = "";
         $data = "<div class='result-data'>";
+        
         foreach (array_keys($row) as $key){ // for every column
             $value = $row[$key];
             if ($key == 'url'){ // make image tag out of URL
-                $img.="<img src='$value'>";
+                $folioURL = getFolioURL($value);
+                $img.="<a href='$folioURL'><img src='$value'></a>";
             } elseif ($key != 'notes'){ // put rest of data (except notes) in a hidden div
                 $data.="<p class='data-item'>$key: $value</p>";
             }

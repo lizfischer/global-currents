@@ -16,6 +16,7 @@
 				<option value="50">50</option>
 				<option value="100">100</option>
 				<option value="150">150</option>
+                <option value="-1">All</option>
 			</select>
 			Include Errors:<input type="checkbox" name="error" value="true" checked>
 			<input type="hidden" name="page" value="0"/>

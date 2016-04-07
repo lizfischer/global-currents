@@ -29,6 +29,7 @@ function getQuery(){
 }
 
 function getPages($query){
+    if ($GLOBALS['perpage'] == -1) return 1;
     return ceil(getNRows($query) / $GLOBALS['perpage']);
 }
 
@@ -38,7 +39,11 @@ function runQuery(){
         if ($_REQUEST["error"]!="true"){
             $query.=" AND IsError=0";
         }
-        $result = $GLOBALS['db']->query($query." LIMIT ".$GLOBALS['startat'].",".$GLOBALS['perpage']);
+        if ($GLOBALS['perpage'] == -1){
+            $result = $GLOBALS['db']->query($query);
+        } else {            
+            $result = $GLOBALS['db']->query($query." LIMIT ".$GLOBALS['startat'].",".$GLOBALS['perpage']);
+        }
         return $result;
     }
 

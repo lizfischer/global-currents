@@ -57,9 +57,9 @@ function printResults($result){
         $data = "<div class='result-data'>";
         foreach (array_keys($row) as $key){ // for every column
             $value = $row[$key];
-            if ($key == 'URL'){ // make image tag out of URL
+            if ($key == 'url'){ // make image tag out of URL
                 $img.="<img src='$value'>";
-            } elseif ($key != 'Notes'){ // put rest of data (except notes) in a hidden div
+            } elseif ($key != 'notes'){ // put rest of data (except notes) in a hidden div
                 $data.="<span class='data-item'>$key: $value</span>";
             }
         }

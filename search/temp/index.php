@@ -3,6 +3,8 @@
 	<head>
 		<title>Search -- Temp</title>
 		<link rel="stylesheet" href="main.css">
+    	<script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="main.js"></script>
 	</head>
 	<body>
 		<h1>SQL Search</h1>

@@ -39,11 +39,11 @@ img {
 	z-index: 1;
 	padding: 5px 8px;
 	top: 85px;
-	left: -50%;
+	left: -0%;
 	background-color: #666;
 	color: white;
 	border-radius: 3px;
-    min-width: 150px;
+	min-width: 150px;
 }
 
 /* CSS Triangle */
@@ -56,9 +56,8 @@ img {
 	top: -8px;
 	content: " ";
 	height: 0;
-	left: 50%;
+	left: 20%;
 	margin-left: -15%;
 	position: absolute;
 	width: 0;
 }
-

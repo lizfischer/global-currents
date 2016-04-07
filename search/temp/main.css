@@ -18,11 +18,10 @@ img {
 .result-data {
     display: none;
 }
-
 /**
 	Tooltip
 */
-.tooltip-wrap {
+.result-wrap {
   color: #555;
   cursor: help;
   font-family: "Gill Sans", Impact, sans-serif;
@@ -34,7 +33,7 @@ img {
   -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
 }
 
-.tooltip-wrap .tooltip {
+.result-wrap .result-data {
 	display: none;
 	position: absolute;
 	z-index: 1;
@@ -44,10 +43,11 @@ img {
 	background-color: #666;
 	color: white;
 	border-radius: 3px;
+    min-width: 150px;
 }
 
 /* CSS Triangle */
-.tooltip-wrap .tooltip:after {
+.result-wrap .result-data:after {
 	width: 0;
 	height: 0;
 	border-left: 8px solid transparent;
@@ -61,3 +61,4 @@ img {
 	position: absolute;
 	width: 0;
 }
+

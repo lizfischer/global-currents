@@ -12,7 +12,7 @@
 			<input id="query" name="query" type="text" value="<?php echo getQuery()?>">
 			<input type="submit" value="Submit">
 			Per page: <select id="perpage" name="perpage">
-				<option value="20">20</option>
+				<option value="20" selected>20</option>
 				<option value="50">50</option>
 				<option value="100">100</option>
 				<option value="150">150</option>
@@ -25,7 +25,7 @@
 				document.getElementByID('error').value = "<?php echo $_REQUEST['error']; ?>"
 			</script>
 		</form>
-
+		<p>Results: <?php echo getNRows(); ?></p>
 
 		<div id="images">
 			<?php

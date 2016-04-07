@@ -65,7 +65,7 @@ function printResults($result){
             if ($key == 'url'){ // make image tag out of URL
                 $img.="<img src='$value'>";
             } elseif ($key != 'notes'){ // put rest of data (except notes) in a hidden div
-                $data.="<span class='data-item'>$key: $value</span>";
+                $data.="<p class='data-item'>$key: $value</p>";
             }
         }
         echo $result_wrap.$img.$data."</div>"."</div>";

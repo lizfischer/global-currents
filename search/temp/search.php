@@ -72,7 +72,7 @@ function printResults($result){
             $value = $row[$key];
             if ($key == 'url'){ // make image tag out of URL
                 $folioURL = getFolioURL($value);
-                $img.="<a href='$folioURL'><img src='$value'></a>";
+                $img.="<a href='$folioURL' target='_blank'><img src='$value'></a>";
             } elseif ($key != 'notes'){ // put rest of data (except notes) in a hidden div
                 $data.="<p class='data-item'>$key: $value</p>";
             }

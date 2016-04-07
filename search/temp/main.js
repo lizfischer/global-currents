@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    $('.result-wrap a').hover(function() {
-        $(this).siblings('.result-data').delay(1000).show();
+    $('.result-wrap').hover(function() {
+        $(this).children('.result-data').delay(1000).show();
     }, function(){
-        $(this).siblings('.result-data').hide();
+        $(this).children('.result-data').hide();
     });
 });

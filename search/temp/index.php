@@ -28,6 +28,7 @@
 				document.getElementByID('error').value = "<?php echo $_REQUEST['error']; ?>"
 			</script>
 		</form>
+        <p><a href="idioms.html" target="_blank">Helpful idioms</a></p>
 		<p>Results: <?php echo getNRows(); ?></p>
 
 		<div id="images">

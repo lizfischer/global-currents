@@ -22,24 +22,33 @@ def extract():
     infile = open(sys.argv[1], "rb")
     out_main= open(sys.argv[2]+".csv", "wb")
     out_c = open(sys.argv[2]+"_colors.csv", "wb")
+    out_error=open(sys.argv[2]+"-error.csv", "wb")
 
     reader = csv.DictReader(infile, delimiter=',', quotechar='\"')
     main_writer = csv.writer(out_main, delimiter=',', quotechar='\"', quoting=csv.QUOTE_ALL)
     c_writer = csv.writer(out_c, delimiter=',', quotechar='\"', quoting=csv.QUOTE_ALL)
+    no_folio_writer = csv.writer(out_error, delimiter=',', quotechar='\"', quoting=csv.QUOTE_ALL)
 
     for row in enumerate(reader):
-        if row[1]['ms_no'] != '45':
-            
+        if row[1]['ms_no'] != '45':     
             # EC
             # url x y msNumber folioNumber w h primaryColor letter isError errorType notes
-            main_writer.writerow([
-                row[1]['URL'], row[1]['x'], row[1]['y'], getMSNumber(row[1]['URL']), getFolio(row[1]['URL']), row[1]['w'],
-                row[1]['h'], row[1]['primary_color'].strip().lower(), row[1]['letter'].strip().upper(), getError(row), row[1]['error_type'], 
-                row[1]['notes'].replace("\"", "'").strip()
-            ])
+            folio = getFolio(row[1]['URL'])
+            if (folio[0].isdigit() or folio[0] =='i'or folio[0] == 'x' or folio[0] =='v'): #try to get rid
+                main_writer.writerow([
+                    row[1]['URL'], row[1]['x'], row[1]['y'], getMSNumber(row[1]['URL']), getFolio(row[1]['URL']), row[1]['w'],
+                    row[1]['h'], row[1]['primary_color'].strip().lower(), row[1]['letter'].strip().upper(), getError(row), row[1]['error_type'], 
+                    row[1]['notes'].replace("\"", "'").strip()
+                ])
 
-            for color in getSecColors(row):
-                c_writer.writerow([row[1]['URL'], color.strip()])
+                for color in getSecColors(row):
+                    c_writer.writerow([row[1]['URL'], color.strip()])
+            else: 
+                no_folio_writer.writerow([
+                    row[1]['URL'], row[1]['x'], row[1]['y'], getMSNumber(row[1]['URL']), getFolio(row[1]['URL']), row[1]['w'],
+                    row[1]['h'], row[1]['primary_color'].strip().lower(), row[1]['letter'].strip().upper(), getError(row), row[1]['error_type'], 
+                    row[1]['notes'].replace("\"", "'").strip(), row[1]['secondary_colors']
+                ])
     return
 
 

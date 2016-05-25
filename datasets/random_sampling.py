@@ -31,7 +31,7 @@ def main():
         print ("Please specify a file to read, a file to write, and the percent (e.g. 15) to get")
     else:
         headers = "URL,Label,X,Y,W,H\n"
-        with open(sys.argv[1], "rb") as inFile, open(sys.argv[2], "rb") as outFile:
+        with open(sys.argv[1], "rb") as inFile, open(sys.argv[2], "wb") as outFile:
             randomSampleCSV(inFile, outFile, sys.argv[3], headers)
 
 

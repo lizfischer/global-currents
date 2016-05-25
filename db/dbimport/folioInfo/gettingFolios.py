@@ -55,7 +55,7 @@ for i in range (1, numFiles+1):
             label = canvas['label'][:2]
             url = canvas['images'][0]['resource']['@id']
             type = url[-29:-27] #get TC or NC in URL
-            if type == "TC" and (label == "f." or label == "p." or label == " f"):#only look at TC
+            if type == "TC" and (label == "f." or label == "p." or label == " f"):#only look at TC, and folio/page images
                 height = canvas['height']
                 width = canvas['width']
                 folioInfo = folioFromURL(url)

@@ -35,13 +35,18 @@ def getFolio(URL):
         page += " "+rv
     return page
 
+def getDruid(URL):
+    parts = URL.split('/')
+    end = parts[5].find('%')
+    return parts[5][0:end]
+
 def getJSONfromDruid(druid):
     url = "https://purl.stanford.edu/"+ druid + "/iiif/manifest.json"
     response = urllib.urlopen(url)
     return json.loads(response.read())
 
 def numFolios(JSON):
-    numImages = len(JSON['sequences'][0]['canvases'])
+    return len(JSON['sequences'][0]['canvases'])
 
 
 ## Gets a single folio's info from the IIIF manifest JSON ##

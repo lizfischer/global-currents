@@ -27,7 +27,7 @@ def extract():
             if (folio[0].isdigit() or folio[0] =='i'or folio[0] == 'x' or folio[0] =='v'):
                 main_writer.writerow([
                     row[1]['URL'], row[1]['x'], row[1]['y'], getMSNumber(row[1]['URL']), folio, row[1]['w'],
-                    row[1]['h'], row[1]['notes'].replace("\"", "'").strip()
+                    row[1]['h'], getError(row), row[1]['error_type'], row[1]['notes'].replace("\"", "'").strip()
                 ])
             else:
                 no_folio_writer.writerow([

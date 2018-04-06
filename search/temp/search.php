@@ -12,6 +12,7 @@ function getPerPage(){
     global $perpage, $startat;
 
     $perpage = $_REQUEST["perpage"];
+    if (!$perpage) { $perpage = 20;}
     $startat = $_REQUEST['page']* $perpage;
 }
 

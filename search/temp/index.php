@@ -2,7 +2,25 @@
 <html>
 	<head>
 		<title>Search -- Temp</title>
-		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="./main.css">
+		<style>
+			h1{
+				font-size: 1.4em;
+			}
+			img {
+				height: 100px;
+				margin: 2px;
+			}
+			#query{
+				width: 60%;
+			}
+			.result-wrap {
+				display: inline-block;
+			}
+			.result-data {
+				display: none;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>SQL Search</h1>
@@ -17,7 +35,7 @@
 				<option value="100">100</option>
 				<option value="150">150</option>
 			</select>
-			Include Errors:<input type="checkbox" name="error" value="true" checked>
+			Include Errors:<input id="error" type="checkbox" name="error" value="true" checked>
 			<input type="hidden" name="page" value="0"/>
 
 			<script type="text/javascript">
